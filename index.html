@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>代码解释器 — AI逐行代码解释工具</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0F172A;color:#E2E8F0;min-height:100vh;display:flex}
+  .container{max-width:800px;margin:0 auto;padding:40px 20px}
+  .header{text-align:center;margin-bottom:48px}
+  .logo{font-size:48px;margin-bottom:12px}
+  h1{font-size:28px;font-weight:700;margin-bottom:8px;color:#F1F5F9}
+  .subtitle{font-size:15px;color:#94A3B8;line-height:1.6}
+  .card{background:#1E293B;border-radius:12px;padding:24px;margin-bottom:16px;border:1px solid #334155}
+  .card h3{font-size:16px;color:#38BDF8;margin-bottom:12px}
+  .card p,.card li{font-size:13px;color:#CBD5E1;line-height:1.8}
+  .card ul{padding-left:18px}
+  .card li{margin-bottom:6px}
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  .level{background:#0F172A;border-radius:8px;padding:16px;text-align:center;border:1px solid #334155}
+  .level .icon{font-size:28px;margin-bottom:8px}
+  .level .name{font-size:14px;font-weight:600;color:#F1F5F9;margin-bottom:4px}
+  .level .temp{font-size:11px;color:#38BDF8;margin-bottom:6px}
+  .level .desc{font-size:11px;color:#94A3B8;line-height:1.5}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .tag{font-size:11px;background:#1E3A5F;color:#38BDF8;padding:3px 10px;border-radius:12px}
+  .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .links a{display:inline-block;padding:10px 24px;border-radius:8px;font-size:13px;text-decoration:none;font-weight:600}
+  .btn-primary{background:#38BDF8;color:#0F172A}
+  .btn-secondary{background:#1E293B;color:#38BDF8;border:1px solid #38BDF8}
+  .footer{text-align:center;margin-top:48px;font-size:11px;color:#475569}
+  .footer a{color:#64748B}
+  @media(max-width:600px){.levels{grid-template-columns:1fr}.container{padding:24px 16px}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">🖥️</div>
+    <h1>代码解释器</h1>
+    <p class="subtitle">AI驱动的代码逐行解释工具<br>用户输入代码，AI用三种深度逐行解释</p>
+  </div>
+
+  <div class="card">
+    <h3>📖 核心设计 — 三级 Prompt Engineering</h3>
+    <p>同一段代码，三种完全不同的解释方式。通过 System Prompt 和 temperature 参数控制输出风格：</p>
+    <div class="levels">
+      <div class="level">
+        <div class="icon">🍎</div>
+        <div class="name">初级 · 生活化类比</div>
+        <div class="temp">temperature: 0.4</div>
+        <div class="desc">用日常事物比喻代码逻辑，零基础也能看懂</div>
+      </div>
+      <div class="level">
+        <div class="icon">⚙️</div>
+        <div class="name">中级 · 设计模式</div>
+        <div class="temp">temperature: 0.3</div>
+        <div class="desc">从代码结构和设计模式角度分析</div>
+      </div>
+      <div class="level">
+        <div class="icon">🔬</div>
+        <div class="name">高级 · 架构与底层</div>
+        <div class="temp">temperature: 0.2</div>
+        <div class="desc">深入运行时机制、内存管理、编译器行为</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🛠️ 技术实现</h3>
+    <ul>
+      <li>前端框架：uni-app（Vue3 Composition API + Pinia），三个页面——解释器、历史记录、设置</li>
+      <li>AI引擎：对接 DeepSeek API，流式输出，支持 11 种编程语言自动检测</li>
+      <li>System Prompt 设计：三级分层 Prompt，temperature 从 0.2→0.4 递减控制解释严谨度</li>
+      <li>Markdown 实时渲染，代码高亮展示</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">Prompt Engineering</span>
+      <span class="tag">System Prompt分层</span>
+      <span class="tag">Temperature调参</span>
+      <span class="tag">DeepSeek API</span>
+      <span class="tag">Vue3</span>
+      <span class="tag">uni-app</span>
+      <span class="tag">流式输出</span>
+      <span class="tag">11种语言</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📂 项目亮点</h3>
+    <ul>
+      <li><b>三级Prompt设计</b>：不是把同一段AI输出改个标题，而是从 System Prompt、temperature、输出格式三个维度完全差异化三种解释风格</li>
+      <li><b>语言自动检测</b>：支持 Python、JavaScript、Java、C++、Go、Rust 等 11 种编程语言</li>
+      <li><b>独立完成全流程</b>：从需求设计、前端开发、AI接口对接到H5部署上线</li>
+    </ul>
+  </div>
+
+  <div class="links">
+    <a href="https://github.com/VoidBloom005/code-explainer" class="btn-primary">📁 GitHub 源码</a>
+    <a href="https://voidbloom005.github.io/apple/" class="btn-secondary">🍎 另一个项目：苹果</a>
+  </div>
+
+  <div class="footer">
+    翁嘉欣 · 2026 · <a href="https://github.com/VoidBloom005">GitHub</a>
+  </div>
+
+</div>
+</body>
+</html>
